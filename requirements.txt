@@ -1,0 +1,25 @@
+lungmask
+pydicom
+tqdm
+pandas
+pylibjpeg
+pylibjpeg-libjpeg
+segmentation-models-pytorch
+git+https://github.com/qubvel/segmentation_models.pytorch
+ipykernel
+albumentations==0.4.6
+numpy
+matplotlib
+jupyter
+opencv-python
+scikit-learn
+scikit-image
+
+SimpleITK
+fastapi
+uvicorn
+
+torch --no-cache-dir install -U git+https://github.com/qubvel/segmentation_models.pytorch
+opencv-python
+pickle
+python-gdcm
