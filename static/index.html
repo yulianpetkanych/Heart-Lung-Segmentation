@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Heart and Lung segmentation</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body> 
+        <div class="header">
+            <h1 id="welcome">Heart&Lung segmentation</h1>
+        </div>
+        
+        <div class="icons"></div>
+        <div class="fileupload-wrapper">
+            <div class="card-body">
+                <div class="card-mask"></div>
+                    <div class="card-text">
+                        <div class="txt-card">
+                            <svg viewBox="0 0 612 612">
+                            <g>
+                                <path d="M0,389.581C0,444.8,41.338,490.616,95.639,499.462l19.139,
+                                1.529h382.5l19.14-1.529C570.662,490.616,612,444.8,612,389.581   
+                                c0-48.516-31.936-89.798-76.527-105.098c-1.614-96.084-82.343-173.474-181.653-173.474c-71.632,0-133.583,40.253-163.181,98.755  
+                                c-13.993-15.022-34.244-24.48-56.777-24.48c-42.256,0-76.5,33.271-76.5,74.274c0,10.71,2.336,20.892,6.509,30.099   
+                                C26.038,307.851,0,345.767,0,389.581z M306,250.1l111.272,125.183h-55.998v125.182h-111.05V375.282h-55.498L306,250.1z"/>
+                            </g>
+                            </svg>
+                            <div>Drag and drop document here to upload</div>
+                            <div class="or">or</div>
+                        </div>
+                        <input type="file" id="input-file" multiple>
+                        <button id="browse-button" class="browse">Browse</button>
+                    </div>
+                </div>
+            </div>
+    
+        <div id="file-list"></div>  
+    
+        <div class="button-container">
+            <button onclick="sendButtonInfo('heart')" class="left-button" disabled>Heart</button>
+            <div class="right-buttons">
+                <button onclick="sendButtonInfo('lung_1')" disabled>Lung 1</button>
+                <button onclick="sendButtonInfo('lung_2')" disabled>Lung 2</button>
+            </div>
+        </div>
+    
+        <div id="image-container">
+            <button id="prevButton">Previous</button>            <div id="image-box">
+                <img id="displayImage" src="" alt="Image will be displayed here">
+                <div id="loading-spinner" class="spinner" style="display: none;"></div>
+            </div>
+            <button id="nextButton">Next</button>
+            <div id="progress-bar"></div>
+        </div>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <div id="toast-message"></div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+        <script src="js\script.js"></script>
+    
+    </body>
+</html>

@@ -1,0 +1,316 @@
+/* CSS styles */
+.header {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Забезпечує, що панель простягатиметься на всю ширину вікна браузера */
+    height: 10%;
+    min-height: 70px; /*???*/
+    background-color: #333; /* Темний фон для кращої видимості */
+    color: white;
+    text-align: center;
+    padding: 25% auto 25% auto; /*Додає верхні та нижні відступи для тексту */
+    z-index: 1000; /* Забезпечує, що панель завжди буде над іншими елементами */
+    
+}
+
+.icons {
+	font-size: 0;
+}
+.icon {
+	display: inline-block;
+	width: 40px;
+	height: 50px;
+	border-radius: 2px 4px 2px 2px;
+	cursor: pointer;
+	position: relative;
+	margin: 0 5px;
+	&:after {
+		content: '';
+		position: absolute;
+		display: block;
+		top: 0;
+		right: 0;
+		width: 12px;
+		height: 12px;
+		border-radius: 0 2px;
+		transition: all 0.2s linear;
+		backface-visibility: hidden;
+	}
+	&--doc {
+		background-color: #0060ff;
+		&:after {
+			background: linear-gradient(45deg, lighten(#0060ff, 15%) 50%, #fff 50%);
+		}
+		i {
+			&:before {
+				content: '☰';
+			}
+		}
+	}
+	i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+		display: block;
+		font-size: 10px;
+		color: #fff;
+		font-weight: 500;
+    max-width: 80%;
+		&:before, &:after {
+			display: block;
+			transition: all 0.2s linear;
+		}
+		&:before {
+			text-align: center;
+			font-size: 12px;
+		}
+		&:after {
+			content: attr(title);
+      text-overflow: ellipsis;
+      overflow: hidden;
+		}
+	}
+}
+.fileupload-wrapper {
+  padding: 50px;
+}
+.card-body {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 30px 30px 40px;
+  position: relative;
+}
+
+.card-text {
+  text-align: center;
+  color: #6f6f6f;
+  svg {
+    width: 60px;
+    path {
+      fill: #ddd;
+    }
+  }
+  .txt-card {
+    margin-bottom: 5px;
+    .or {
+      color: #ccc;
+    }
+  }
+  input[type="file"] {
+    display: none;
+  }
+  button {
+    background: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 10px 10px;
+    width: 100px;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      background: #0069d9;
+    }
+  }
+}
+
+.button-container button:disabled {
+  background-color: #ccc; /* Сірий фон для неактивної кнопки */
+  color: #666; /* Сірий текст для неактивної кнопки */
+  border: 2px solid #aaa; /* Сіра рамка для неактивної кнопки */
+  cursor: not-allowed; /* Курсор "заборонено" */
+  box-shadow: none; /* Відсутність тіні */
+}
+
+.button-container button {
+    background-color: #ade4ff9c;
+    border: 2px solid #1f1f1f;
+    border-radius: 30px;
+    box-shadow: #1f1f1f 4px 4px 0 0;
+    color: #1f1f1f;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-container button:hover {
+    background-color: #e3fdff;
+  }
+  
+  .button-container button:active {
+    box-shadow: #1f1f1f 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the buttons within the container */
+  }
+
+  .left-button {
+    float: left;
+    margin-right: 25%;
+  }
+  
+  .right-buttons {
+    float: right;
+  }
+  
+  .right-buttons button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Use a more specific media query to target larger screens */
+  @media (min-width: 768px) {
+    .button-container button {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+  }
+  /* .submit-button {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+
+
+
+  #image-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 600px; /* Фіксована ширина */
+    height: 400px; /* Фіксована висота */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column; /* Вертикальне вирівнювання */
+}
+
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  margin: auto auto auto auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#image-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#displayImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block; /* Приховати зображення спочатку */
+}
+
+
+#prevButton, #nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#prevButton {
+    left: 10px;
+}
+
+#nextButton {
+    right: 10px;
+}
+
+#progress-bar {
+  width: 0; /* Початкова ширина 0% */
+  height: 20px;
+  background-color: #76c7c0;
+  border-top: 1px solid #ccc;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  line-height: 20px;
+  font-size: 14px;
+  color: #333;
+  transition: width 0.3s; /* Плавна анімація зміни ширини */
+}
+
+
+.toast {
+  visibility: hidden; /* Hidden by default. Visible when shown */
+  min-width: 250px; /* Set a default minimum width */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the toast */
+  top: 70px; /* Adjust this value to be below the header */
+  font-size: 17px; /* Increase font size */
+  transform: translateX(-50%);
+}
+.toast.show {
+  visibility: visible; /* Show the toast */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s; /* Fade in and out */
+  animation: fadein 0.5s, fadeout 0.5s 2.5s; /* Fade in and out */
+}
+
+@-webkit-keyframes fadein {
+  from {top: 50px; opacity: 0;}
+  to {top: 70px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {top: 50px; opacity: 0;}
+  to {top: 70px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {top: 70px; opacity: 1;}
+  to {top: 50px; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {top: 70px; opacity: 1;}
+  to {top: 50px; opacity: 0;}
+}
