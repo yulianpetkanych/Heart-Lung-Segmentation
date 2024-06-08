@@ -6,7 +6,7 @@
     left: 0;
     width: 100%; /* Забезпечує, що панель простягатиметься на всю ширину вікна браузера */
     height: 10%;
-    min-height: 70px; /*???*/
+    min-height: 70px; 
     background-color: #333; /* Темний фон для кращої видимості */
     color: white;
     text-align: center;

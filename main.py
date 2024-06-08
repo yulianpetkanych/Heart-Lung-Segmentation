@@ -19,7 +19,6 @@ heart_npy_path = "heart_npy"
 heart_jpg_path = "heart_jpg"
 heart_model_path = "last_epoch_model.pth"
 
-# Дозволяємо CORS для всіх джерел (або налаштуйте відповідно до ваших потреб)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -28,7 +27,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Монтуємо папку зі статичними файлами
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -55,7 +53,6 @@ async def clean_up_files_middleware(request: Request, call_next):
     response = await call_next(request)
     return response
 
-# Маршрут для завантаження файлів
 @app.post("/uploads")
 async def upload_files(files: List[UploadFile] = File(...)):
     os.makedirs(upload_directory, exist_ok=True)
@@ -68,23 +65,15 @@ async def upload_files(files: List[UploadFile] = File(...)):
     return JSONResponse(content={"message": "Files uploaded successfully"})
 
 
-# Маршрут для отримання зображень на основі button_id
 @app.get("/get_images")
 async def get_images(button_id: str, background_tasks: BackgroundTasks):
-    # Ваш логічний код для отримання зображень на основі button_id
-    # В цьому випадку ми використовуємо папку results
-    print(button_id)
     if button_id == "heart":
-        print("gay")
         _ = heart_segmentation(root_path=upload_directory,
                                path_to_save=results_directory,
                                organ_num=1,
                                path_for_npy=heart_npy_path,
                                path_for_jpg=heart_jpg_path,
                                model_path=heart_model_path)
-        # for file in os.listdir(upload_directory):
-        #     file_location = os.path.join(upload_directory, file)
-        #     heart_segmentation(file_location, results_directory)
     elif button_id == "lung_1":
         _ = heart_segmentation(root_path=upload_directory,
                                path_to_save=results_directory,
@@ -104,6 +93,9 @@ async def get_images(button_id: str, background_tasks: BackgroundTasks):
 
     with zipfile.ZipFile(memory_file, 'w') as zf:
         for root, _, files in os.walk(results_directory):
+            files.sort()
+            #sorted(files)
+            print(files)
             for file in files:
                 file_path = os.path.join(root, file)
                 zf.write(file_path, arcname=os.path.relpath(file_path, results_directory))
