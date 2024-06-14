@@ -95,7 +95,6 @@ async def get_images(button_id: str, background_tasks: BackgroundTasks):
         for root, _, files in os.walk(results_directory):
             files.sort()
             #sorted(files)
-            print(files)
             for file in files:
                 file_path = os.path.join(root, file)
                 zf.write(file_path, arcname=os.path.relpath(file_path, results_directory))

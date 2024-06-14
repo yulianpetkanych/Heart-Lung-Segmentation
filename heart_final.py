@@ -43,7 +43,8 @@ def heart_segmentation(root_path,
             
         return ids_num_shape
 
-    ids_num_shape = get_info_files(ids, root_path)
+    ids_num_shape = get_info_files(ids, root_path)[ids[0]]
+
 
     def id_dicom_to_numpy(ids: str,
                     root_path: str,
@@ -53,13 +54,11 @@ def heart_segmentation(root_path,
         '''
         save all id dicom data files in tensor.
         '''          
-        tensor = np.zeros(shape[ids[0]], dtype=np.float32)
+        tensor = np.zeros(shape, dtype=np.float32)
         for idx, filename in enumerate(ids):
             file_path = os.path.join(root_path, filename)
             dm = pdm.dcmread(file_path).pixel_array.astype(np.float32)
             tensor[idx, :, :] = dm
-        # if (tensor.shape[0]>100):
-        #     tensor = tensor[35:-40, :, :]
         with open(os.path.join(path_to_save, NP_FILENAME + '.npy'), 'wb') as f:
             pickle.dump(tensor, f)
                 
@@ -70,6 +69,7 @@ def heart_segmentation(root_path,
     def convert_to_rgb(ids: str,
                     root_path: str,
                     save_path: str,
+                    organ_num: bool,
                     resize: bool = True,
                     new_size: int = 512,
                     mask: bool = False,
@@ -83,7 +83,10 @@ def heart_segmentation(root_path,
         for i in tqdm(range(n_slices)):
             im = tensor[i,:,:]
             eps = 1e-9
-            im = (im.astype(np.float32) - (-2000))*255.0 / (im.max()-(-2000)) + eps            
+            if organ_num == 0:
+                im = (im.astype(np.float32) - im.min())*255.0 / (im.max()-im.min()) + eps
+            else:
+                im = (im.astype(np.float32) - (0))*255.0 / (im.max()-(-3000)) + eps    
             im = im.astype(np.uint8)
             if resize:
                 im = cv2.resize(im, (new_size, new_size))
@@ -99,6 +102,7 @@ def heart_segmentation(root_path,
     convert_to_rgb(ids = ids,
             root_path = path_for_npy,
             save_path = path_for_jpg, 
+            organ_num=organ_num,
             resize = False,
             mask = False)
 
